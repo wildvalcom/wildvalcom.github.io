@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+
+  <title>Playground</title>
+  <meta name='description' content='Playground'>
+  <meta name='author' content='Playground'>
+  <style type='text/css'>
+    html {
+      height: 100%;
+    }
+    body {
+      background-color: #faf;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Playground</h1>
+  <strong>Close this page if you have epilepsy</strong>
+  <script>
+    let started = false;
+
+    const getRandomHex = () => {
+      return '#' + Math.floor(Math.random()*16777215).toString(16);
+    }
+
+    const clearAll = () => {
+      started = true;
+      document.body.style.background = '#faf';
+    }
+
+    const moveHandler = (e) => {
+      e.preventDefault();
+      if (started) document.body.style.background = getRandomHex();
+    }
+
+    const reset = () => { started = false; }
+
+    document.body.addEventListener('touchstart', clearAll);
+    document.body.addEventListener('mousedown', clearAll);
+    document.body.addEventListener('touchmove', moveHandler);
+    document.body.addEventListener('mousemove', moveHandler);
+    document.body.addEventListener('touchend', reset);
+    document.body.addEventListener('mouseup', reset);
+  </script>
+</body>
+</html>
